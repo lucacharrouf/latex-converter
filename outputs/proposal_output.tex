@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\title{Skin Cancer Classification Using Machine Learning}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Dataset}
+
+Skin Cancer MNIST - HAM10000: This dataset consists of 10,000 dermatoscopic images of pigmented skin lesions across seven different diagnostic categories. The dataset was curated to train neural networks for automated diagnosis of pigmented skin lesions.
+
+\subsection{Categories in dataset}
+\begin{itemize}
+    \item Actinic keratoses and intraepithelial carcinoma 
+    \item Basal cell carcinoma 
+    \item Benign keratosis-like lesions 
+    \item Dermatofibroma
+    \item Melanoma 
+    \item Melanocytic nevi 
+    \item Vascular lesions 
+\end{itemize}
+
+\subsection{Data attributes}
+\begin{itemize}
+    \item Image files in HAM10000\_images
+    \item Metadata including age, sex, localization, and diagnostic confirmation in HAM10000\_metadata
+\end{itemize}
+
+\section{Data Preprocessing}
+\begin{itemize}
+    \item \textbf{Image Resizing:} Standardize all images to the same dimensions to ensure consistent feature extraction.
+    \item \textbf{Color Normalization:} Standardize color representation to reduce variations in lighting and camera settings, which are common in dermatoscopic imagery. // Clarify
+    \item \textbf{Duplicates:} The dataset contains multiple images of the same lesion (with same lesion\_id but different image\_id)
+\end{itemize}
+
+\section{Classification Proposal}
+
+The project aims to build a model that can accurately classify dermatoscopic images into their corresponding skin lesion categories. This classification has significant real-world applications in assisting dermatologists with preliminary diagnosis and screening.
+
+\section{Intended Features}
+\begin{itemize}
+    \item \textbf{Histogram of Oriented Gradients (HOG):} To capture edge and texture patterns that are crucial for distinguishing between different types of skin lesions. // Replace with Edge detection
+    \item \textbf{Color Histograms:} To quantify color distributions, as color is a key diagnostic feature in dermatology (e.g., melanomas often have specific color patterns).
+    \item \textbf{Shape Descriptors:} To quantify border irregularity and asymmetry, which are important clinical indicators in skin cancer diagnosis.
+\end{itemize}
+
+\section{Classifiers}
+\begin{itemize}
+    \item \textbf{Convolutional Neural Networks (CNNs):} This will be most likely the most accurate classifier, given that they are specifically designed for image processing tasks.
+    \item \textbf{Random forests:} Provides robust classification with feature importance metrics that can help identify which image characteristics are most diagnostically relevant.
+\end{itemize}
+
+\section{Evaluation Metrics}
+
+Given the medical nature of this classification task and likely class imbalance, we'll focus on:
+\begin{itemize}
+    \item Precision, recall, and F1-score per class
+    \item Confusion matrix analysis
+    \item ROC curves and AUC metrics
+    \item Sensitivity and specificity, particularly for malignant vs. benign classifications
+\end{itemize}
+
+\end{document}

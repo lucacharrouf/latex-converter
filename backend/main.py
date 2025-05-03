@@ -7,13 +7,13 @@ from pathlib import Path
 current_dir = Path(__file__).parent
 sys.path.append(str(current_dir))
 
-from pdf_to_text import extract_text_from_pdf
+from text_extractor import extract_text
 from api import convert_text_to_latex
 
 def main():
-    print("Starting PDF to LaTeX conversion")
-    parser = argparse.ArgumentParser(description='Convert PDF to LaTeX')
-    parser.add_argument('--input', required=True, help='Input PDF file path')
+    print("Starting document to LaTeX conversion")
+    parser = argparse.ArgumentParser(description='Convert document to LaTeX')
+    parser.add_argument('--input', required=True, help='Input file path (PDF, DOCX, or PPTX)')
     parser.add_argument('--output', required=True, help='Output LaTeX file path')
     args = parser.parse_args()
 
@@ -24,8 +24,8 @@ def main():
         print(f"Error: Input file {args.input} does not exist")
         sys.exit(1)
 
-    print("Extracting text from PDF...")
-    text = extract_text_from_pdf(args.input)
+    print("Extracting text from document...")
+    text = extract_text(args.input)
     print("Text extracted successfully")
 
     print("Converting to LaTeX...")
