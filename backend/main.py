@@ -1,8 +1,14 @@
+import os
+import sys
+import argparse
+from pathlib import Path
+
+# Add the current directory to Python path
+current_dir = Path(__file__).parent
+sys.path.append(str(current_dir))
+
 from pdf_to_text import extract_text_from_pdf
 from api import convert_text_to_latex
-import os
-import argparse
-import sys
 
 def main():
     print("Starting PDF to LaTeX conversion")

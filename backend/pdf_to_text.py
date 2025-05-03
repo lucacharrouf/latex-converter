@@ -1,9 +1,9 @@
 # pdf_to_text.py
-import fitz  # PyMuPDF
+import pdfplumber
 
 def extract_text_from_pdf(pdf_path):
-    doc = fitz.open(pdf_path)
     text = ""
-    for page in doc:
-        text += page.get_text()
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text() or ""
     return text
