@@ -209,3 +209,146 @@ Conversion completed successfully
 LaTeX storage path: outputs/1746596575441_output.tex
 Updating database record with LaTeX path
 Cleaning up temporary file
+2025-05-07T05:48:34.335Z - POST /api/upload
+Received file upload request
+Request body: [Object: null prototype] {}
+Request file: {
+  fieldname: 'file',
+  originalname: 'CharroufLuca - Resume.pdf',
+  encoding: '7bit',
+  mimetype: 'application/pdf',
+  buffer: <Buffer 25 50 44 46 2d 31 2e 35 0a 25 bf f7 a2 fe 0a 33 20 30 20 6f 62 6a 0a 3c 3c 20 2f 4c 69 6e 65 61 72 69 7a 65 64 20 31 20 2f 4c 20 34 37 31 35 30 20 2f ... 47100 more bytes>,
+  size: 47150
+}
+File received: CharroufLuca - Resume.pdf
+File size: 47150
+File mimetype: application/pdf
+Storage path: uploads/1746596914339_CharroufLuca - Resume.pdf
+Temp directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp
+Output directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs
+Temp file path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746596914339_output.tex
+Saving file temporarily to: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Uploading to Supabase storage
+Supabase storage upload successful: {
+  path: 'uploads/1746596914339_CharroufLuca - Resume.pdf',
+  id: '063811be-a823-4696-bdbe-fc7b7fbb60c4',
+  fullPath: 'docs/uploads/1746596914339_CharroufLuca - Resume.pdf'
+}
+Creating database record
+Database record created: [
+  {
+    id: 13,
+    created_at: '2025-05-07T05:48:34.951489+00:00',
+    original_filename: 'CharroufLuca - Resume.pdf',
+    pdf_storage_path: 'uploads/1746596914339_CharroufLuca - Resume.pdf',
+    latex_storage_path: null
+  }
+]
+Running Python conversion script
+Input path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746596914339_output.tex
+Python script output: Conversion successful. Output written to /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746596914339_output.tex
+
+Python conversion completed successfully
+Conversion completed successfully
+LaTeX storage path: outputs/1746596914339_output.tex
+Updating database record with LaTeX path
+Cleaning up temporary file
+2025-05-07T05:48:53.379Z - GET /api/download/1746596914339_output.tex
+2025-05-07T05:55:10.209Z - POST /api/upload
+Received file upload request
+Request body: [Object: null prototype] {}
+Request file: {
+  fieldname: 'file',
+  originalname: 'Charrouf - Resume.pdf',
+  encoding: '7bit',
+  mimetype: 'application/pdf',
+  buffer: <Buffer 25 50 44 46 2d 31 2e 35 0a 25 bf f7 a2 fe 0a 33 20 30 20 6f 62 6a 0a 3c 3c 20 2f 4c 69 6e 65 61 72 69 7a 65 64 20 31 20 2f 4c 20 34 36 36 32 30 20 2f ... 46570 more bytes>,
+  size: 46620
+}
+File received: Charrouf - Resume.pdf
+File size: 46620
+File mimetype: application/pdf
+Storage path: uploads/1746597310215_Charrouf - Resume.pdf
+Temp directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp
+Output directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs
+Temp file path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/Charrouf - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597310215_output.tex
+Saving file temporarily to: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/Charrouf - Resume.pdf
+Uploading to Supabase storage
+Supabase storage upload successful: {
+  path: 'uploads/1746597310215_Charrouf - Resume.pdf',
+  id: '6827b4a4-ae35-4285-ab03-9d2c2b5ba6cf',
+  fullPath: 'docs/uploads/1746597310215_Charrouf - Resume.pdf'
+}
+Creating database record
+Database record created: [
+  {
+    id: 14,
+    created_at: '2025-05-07T05:55:11.024304+00:00',
+    original_filename: 'Charrouf - Resume.pdf',
+    pdf_storage_path: 'uploads/1746597310215_Charrouf - Resume.pdf',
+    latex_storage_path: null
+  }
+]
+Running Python conversion script
+Input path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/Charrouf - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597310215_output.tex
+Python script output: Conversion successful. Output written to /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597310215_output.tex
+
+Python conversion completed successfully
+Conversion completed successfully
+LaTeX storage path: outputs/1746597310215_output.tex
+Updating database record with LaTeX path
+Cleaning up temporary file
+2025-05-07T05:55:39.111Z - GET /api/download/1746597310215_output.tex
+2025-05-07T05:55:56.587Z - GET /api/download/1746597310215_output.tex
+2025-05-07T05:56:49.260Z - GET /api/download/1746597310215_output.tex
+2025-05-07T05:57:55.700Z - POST /api/upload
+Received file upload request
+Request body: [Object: null prototype] {}
+Request file: {
+  fieldname: 'file',
+  originalname: 'CharroufLuca - Resume.pdf',
+  encoding: '7bit',
+  mimetype: 'application/pdf',
+  buffer: <Buffer 25 50 44 46 2d 31 2e 35 0a 25 bf f7 a2 fe 0a 33 20 30 20 6f 62 6a 0a 3c 3c 20 2f 4c 69 6e 65 61 72 69 7a 65 64 20 31 20 2f 4c 20 34 37 31 35 30 20 2f ... 47100 more bytes>,
+  size: 47150
+}
+File received: CharroufLuca - Resume.pdf
+File size: 47150
+File mimetype: application/pdf
+Storage path: uploads/1746597475703_CharroufLuca - Resume.pdf
+Temp directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp
+Output directory: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs
+Temp file path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597475703_output.tex
+Saving file temporarily to: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Uploading to Supabase storage
+Supabase storage upload successful: {
+  path: 'uploads/1746597475703_CharroufLuca - Resume.pdf',
+  id: '6d6281f5-04b7-48d5-b8dc-27a76ea60544',
+  fullPath: 'docs/uploads/1746597475703_CharroufLuca - Resume.pdf'
+}
+Creating database record
+Database record created: [
+  {
+    id: 15,
+    created_at: '2025-05-07T05:57:56.374061+00:00',
+    original_filename: 'CharroufLuca - Resume.pdf',
+    pdf_storage_path: 'uploads/1746597475703_CharroufLuca - Resume.pdf',
+    latex_storage_path: null
+  }
+]
+Running Python conversion script
+Input path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/backend/temp/CharroufLuca - Resume.pdf
+Output path: /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597475703_output.tex
+Python script output: Conversion successful. Output written to /Users/lucacharrouf/Documents/CODINGSTUFF/latex-converter/latex-converter/outputs/1746597475703_output.tex
+
+Python conversion completed successfully
+Conversion completed successfully
+LaTeX storage path: outputs/1746597475703_output.tex
+Updating database record with LaTeX path
+Cleaning up temporary file
+2025-05-07T05:58:20.587Z - GET /api/download/1746597475703_output.tex

@@ -27,6 +27,11 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use('/api', uploadRouter);
 
+// Test route to confirm API is working
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API is working' });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err);

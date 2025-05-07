@@ -6,10 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 CLAUDE_API_KEY = os.getenv('CLAUDE_API_KEY')
 
-def convert_text_to_latex(text):
+def convert_text_to_latex(text, edit_instructions=None):
     """
     Convert text to LaTeX using Claude API.
     This provides better conversion quality than basic text replacement.
+    If edit_instructions is provided, it will edit the existing LaTeX document.
     """
     url = "https://api.anthropic.com/v1/messages"
     headers = {
@@ -18,21 +19,31 @@ def convert_text_to_latex(text):
         "anthropic-version": "2023-06-01"
     }
     
-    prompt = f"""Please convert the following text into a well-formatted LaTeX document. 
-    Use appropriate LaTeX commands for:
-    - Section headers
-    - Lists and bullet points
-    - Mathematical expressions
-    - Tables if present
-    - Citations if present
-    - Special characters and symbols
-    
-    Here's the text to convert:
-    
-    {text}
-    
-    Please provide only the LaTeX code, starting with \\documentclass and ending with \\end{{document}}.
-    """
+    if edit_instructions:
+        prompt = f"""Please edit the following LaTeX document according to these instructions: {edit_instructions}
+        
+        Here's the current LaTeX document:
+        
+        {text}
+        
+        Please provide the complete edited LaTeX code, maintaining the document structure and ensuring it's valid LaTeX.
+        """
+    else:
+        prompt = f"""Please convert the following text into a well-formatted LaTeX document. 
+        Use appropriate LaTeX commands for:
+        - Section headers
+        - Lists and bullet points
+        - Mathematical expressions
+        - Tables if present
+        - Citations if present
+        - Special characters and symbols
+        
+        Here's the text to convert:
+        
+        {text}
+        
+        Please provide only the LaTeX code, starting with \\documentclass and ending with \\end{{document}}.
+        """
     
     data = {
         "model": "claude-3-7-sonnet-20250219",

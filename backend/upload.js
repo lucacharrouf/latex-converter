@@ -47,6 +47,40 @@ async function runPythonConversion(inputPath, outputPath) {
   });
 }
 
+// Function to edit document using Python script
+async function editDocument(currentTex, instructions) {
+  return new Promise((resolve, reject) => {
+    console.log('Running Python edit script');
+    
+    const pythonProcess = spawn('python3', [
+      path.join(__dirname, 'edit.py'),
+      '--tex', currentTex,
+      '--instructions', instructions
+    ]);
+
+    let output = '';
+    let error = '';
+
+    pythonProcess.stdout.on('data', (data) => {
+      output += data.toString();
+    });
+
+    pythonProcess.stderr.on('data', (data) => {
+      error += data.toString();
+    });
+
+    pythonProcess.on('close', (code) => {
+      if (code !== 0) {
+        console.error(`Python script exited with code ${code}`);
+        reject(new Error(error || `Python script failed with code ${code}`));
+      } else {
+        console.log('Python edit completed successfully');
+        resolve(output.trim());
+      }
+    });
+  });
+}
+
 router.post('/upload', upload.single('file'), async (req, res) => {
     console.log('Received file upload request');
     console.log('Request body:', req.body);
@@ -134,6 +168,9 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         const latexStoragePath = `outputs/${path.basename(outputPath)}`;
         console.log('LaTeX storage path:', latexStoragePath);
         
+        // Read the LaTeX file content
+        const latexContent = fs.readFileSync(outputPath, 'utf-8');
+        
         // Update database with LaTeX path
         console.log('Updating database record with LaTeX path');
         const { error: updateError } = await supabase
@@ -153,7 +190,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
           success: true, 
           path: storagePath,
           output: latexStoragePath,
-          documentId: docRecord[0].id
+          documentId: docRecord[0].id,
+          latexContent
         });
       } catch (conversionError) {
         console.error('Conversion error:', conversionError);
@@ -168,6 +206,66 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       }
       res.status(500).json({ error: error.message });
     }
+});
+
+// New endpoint for document editing
+router.post('/edit', async (req, res) => {
+  try {
+    const { currentTex, instructions } = req.body;
+    
+    if (!currentTex || !instructions) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+    
+    const editedTex = await editDocument(currentTex, instructions);
+    res.json({ output: editedTex, latexContent: editedTex });
+    
+  } catch (error) {
+    console.error('Error in edit process:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Endpoint to download a file from the outputs directory
+router.get('/download/:filename', async (req, res) => {
+  console.log('Download route hit:', req.params.filename);
+  const filename = req.params.filename;
+  const outputDir = path.join(__dirname, '..', 'outputs');
+  const filePath = path.join(outputDir, filename);
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+
+  res.download(filePath, filename, (err) => {
+    if (err) {
+      console.error('Error sending file:', err);
+      res.status(500).json({ error: 'Error sending file' });
+    }
+  });
+});
+
+// New endpoint to serve the contents of a .tex file
+router.get('/latex/:filename', async (req, res) => {
+  const filename = req.params.filename;
+  const outputDir = path.join(__dirname, '..', 'outputs');
+  const filePath = path.join(outputDir, filename);
+
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'File not found' });
+  }
+
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8');
+    res.type('text/plain').send(content);
+  } catch (err) {
+    res.status(500).json({ error: 'Could not read file' });
+  }
+});
+
+// Fallback for unmatched download routes
+router.get('/download*', (req, res) => {
+  res.status(404).json({ error: 'Download route not found' });
 });
 
 const app = express();
