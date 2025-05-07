@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
+import cors from 'cors';
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
@@ -113,7 +114,6 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       const { data: docRecord, error: docError } = await supabase
         .from('docs')
         .insert([{
-          user_id: req.body.user_id || '00000000-0000-0000-0000-000000000000', // Default UUID
           original_filename: file.originalname,
           pdf_storage_path: storagePath
         }])
@@ -169,5 +169,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
       res.status(500).json({ error: error.message });
     }
 });
+
+const app = express();
+app.use(cors({ origin: ['http://localhost:5173', 'http://localhost:8081'], credentials: true }));
 
 export default router;

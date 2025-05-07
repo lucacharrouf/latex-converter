@@ -3,6 +3,7 @@ import uploadRouter from './upload.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 // Load .env from the root directory
 const __filename = fileURLToPath(import.meta.url);
@@ -10,6 +11,12 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const app = express();
+
+// CORS middleware at the very top
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:8081'],
+  credentials: true,
+}));
 
 // Add logging middleware
 app.use((req, res, next) => {
@@ -26,7 +33,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log('Current directory:', __dirname);
